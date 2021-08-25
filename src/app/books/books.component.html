@@ -1,0 +1,137 @@
+<form
+  class="text-center border border-light p-5"
+  (ngSubmit)="onAddBook(f)"
+  #f="ngForm"
+>
+  <div class="row">
+    <div class="col-md-8">
+      <p class="h4 mb-4">Books Management</p>
+
+      <input
+        type="text"
+        id="title"
+        #title
+        name="title"
+        ngModel
+        class="form-control mb-4"
+        placeholder="Title"
+        required
+        [readonly]="editState"
+      />
+
+      <input
+      type="text"
+      id="author"
+      #author
+      name="author"
+      ngModel
+      class="form-control mb-4"
+      placeholder="Author"
+      required
+    />
+
+      <input
+        type="text"
+        id="subtitle"
+        #subtitle
+        name="subtitle"
+        ngModel
+        class="form-control mb-4"
+        placeholder="Subtitle"
+        required
+      />
+
+      <input
+        type="text"
+        id="image"
+        #image
+        name="image"
+        ngModel
+        class="form-control mb-4"
+        placeholder="Image URL"
+        required
+      />
+      <input
+        type="text"
+        id="id"
+        #id
+        name="id"
+        ngModel
+        class="form-control mb-4"
+        hidden
+      />
+
+      <br />
+      <br />
+
+      <button
+        class="btn btn-info m-2"
+        type="submit"
+        [disabled]="!f.valid || editState"
+      >
+        Save
+      </button>
+      <!-- <button class="btn btn-success m-2" type="submit" [disabled]="!editState">Edit</button> -->
+      <button
+        class="btn btn-secondary m-2"
+        type="button"
+        [disabled]=""
+        (click)="onResetForm()"
+      >
+        Reset
+      </button>
+    </div>
+
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mt-3 mb-3">
+      <!-- Card -->
+
+      <div class="card h-100">
+        <img id="imgcover" *ngIf="image.value" [src]="image.value" [alt]="name.value" />
+        <div class="card-body">
+          <h5 class="card-title">{{ title.value }}</h5>
+          <p class="card-text">{{ author.value }}</p>
+<br>
+          <p class="card-text">{{ subtitle.value }}</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+
+      <!-- Card -->
+    </div>
+  </div>
+</form>
+
+<br />
+
+<div class="row">
+  <!-- <ng-container *ngFor="let book of books;">
+
+  </ng-container> -->
+
+  <div
+    class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mt-3 mb-3"
+    *ngFor="let book of books"
+  >
+    <!-- Card -->
+
+    <div class="card h-100">
+      <img id="imgcover" src="{{ book.image }}" />
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text">Book by {{ book.author }}</p>
+        <br />
+        <p class="card-text">{{ book.subtitle }}</p>
+      </div>
+
+      <div class="card-footer">
+        <button class="btn btn-danger btn-sm mb-2" (click)="onDelete(book.id)">
+          X
+        </button>
+      </div>
+    </div>
+
+    <!-- Card -->
+  </div>
+</div>
