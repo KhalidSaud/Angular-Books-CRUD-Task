@@ -5,6 +5,8 @@ This is a sample SPA project made with Angular 11 with active Routing, please na
 
 ## Installation
 
+Make sure Node.js LTS is installed https://nodejs.org/en/ 
+
 After cloning this project to your local machine make sure to run the following command in the root folder of the project, this will install the initial dependencies required to run an Angular project.
 
 ```bash
@@ -14,6 +16,7 @@ npm install
 In case you need to install Angular CLI you can use the following command.
 
 ```bash
+npm install --save-dev @angular-devkit/build-angular
 npm install -g @angular/cli
 ```
 
